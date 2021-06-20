@@ -8,19 +8,25 @@ Dark green: #28b485
 */
 
 /* resetStart */
-* {
+*,*::after, *::before {
     margin: 0px;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit; /* every element now inherits from the body box-size $$BEST PRACTICE$$ */
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3.0rem;
+
+    box-sizing: border-box; /*go yo *,*::after, *::before box-sizing to know why it is done this way */
 }
 
 /* resetEnd */
@@ -34,21 +40,21 @@ body {
     clip-path: polygon(0 0, 100% 0 , 100% 75vh, 0 100%);
 }
 
-.logo-box{
+.header__logo-box{
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4.0rem;
+    left: 4.0rem;
 }
 
-.logo{
-    height: 35px;
+.header__logo{
+    height: 3.5rem;
 }
 
-.logo:hover{
+.header__logo:hover{
     animation: barrelRoll 1s;
 }
 
-.text-box{
+.header__text-box{
     /* thisIsHowYouCenterADivStart */
     position: absolute;
     top: 40%;
@@ -63,25 +69,25 @@ body {
     text-transform: uppercase;
 
     backface-visibility: hidden;  /* If you don't want any shaking in text */
-    margin-bottom: 60px;
+    margin-bottom: 6.0rem;
 }
 
-.heading-primary-main{
+.heading-primary--main{
     display: block;
-    font-size: 60px;
+    font-size: 6.0rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
     animation-timing-function: ease-out;
 }
 
-.heading-primary-sub{
+.heading-primary--sub{
     display: block;
-    font-size: 20px;
+    font-size: 2.0rem;
     font-size: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
 
     animation: moveInRight 1s ease-out;
 }
@@ -89,11 +95,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10.0rem);
     }
 
     80% {
-        transform: translateX(10px);
+        transform: translateX(1.0rem);
     }
 
     100% {
@@ -105,11 +111,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10.0rem);
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1.0rem);
     }
 
     100% {
@@ -130,11 +136,11 @@ body {
 
 @keyframes moveInButtom {
     0% {
-        transform: translateY(50px);
+        transform: translateY(5.0rem);
         opacity: 0;
     }
     100% {
-        transform: translateY(0px);
+        transform: translateY(0rem);
         opacity: 1;
     }
 }
@@ -142,25 +148,25 @@ body {
 .btn:link, .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4.0rem;
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10.0rem;
     transition: all .2s;
     position: relative; /* find the reason in btn::after */
-    
+    font-size: 1.6rem;
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    transform: translateY(-.3rem);
+    box-shadow: 0 1.0rem 2.0rem rgba(0, 0, 0, .2);
 }
 
 .btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1.0rem rgba(0, 0, 0, .2);
 }
 
-.btn-white {
+.btn--white {
     background-color: #fff;
     color: #777;
 }
@@ -170,16 +176,17 @@ body {
     display: inline-block; /*this is a must for it to work*/
     height: 100%; /*after psudoelement is treated as the child of the element that is why 100% means 100% of that element*/
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10.0rem;
     position: absolute; /* this always needs relative positioning so it trys to find a element that has position: relative so we set the button position to relative */
     top: 0;
     left: 0;
     z-index: -1;
+    transition: all .4s;
 }
 
-.btn-white::after {
+.btn--white::after {
     background-color: white;
-    transition: all .4s;
+    
 }
 
 .btn:hover::after {
@@ -187,7 +194,7 @@ body {
     opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInButtom .5s ease-out .25s;
     animation-fill-mode: backwards; /* it uses 0% as the initial state without this, the button will be visible at first, try removeing it and see what happens */
 }
