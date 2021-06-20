@@ -55,6 +55,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%); 
     /* thisIsHowYouCenterADivEnd */
+    text-align: center; /* inline-block elements are treated as text, so it will center any inline-block element*/
 }
 
 .heading-primary{
@@ -62,6 +63,7 @@ body {
     text-transform: uppercase;
 
     backface-visibility: hidden;  /* If you don't want any shaking in text */
+    margin-bottom: 60px;
 }
 
 .heading-primary-main{
@@ -123,4 +125,28 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
 }
