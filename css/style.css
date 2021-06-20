@@ -44,6 +44,10 @@ body {
     height: 35px;
 }
 
+.logo:hover{
+    animation: barrelRoll 1s;
+}
+
 .text-box{
     /* thisIsHowYouCenterADivStart */
     position: absolute;
@@ -109,5 +113,14 @@ body {
     100% {
         opacity: 1;
         transform: translate(0);
+    }
+}
+
+@keyframes barrelRoll {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
