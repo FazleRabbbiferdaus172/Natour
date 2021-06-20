@@ -127,6 +127,18 @@ body {
     }
 }
 
+
+@keyframes moveInButtom {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
 .btn:link, .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
@@ -134,6 +146,8 @@ body {
     display: inline-block;
     border-radius: 100px;
     transition: all .2s;
+    position: relative; /* find the reason in btn::after */
+    
 }
 
 .btn:hover {
@@ -149,4 +163,31 @@ body {
 .btn-white {
     background-color: #fff;
     color: #777;
+}
+
+.btn::after {
+    content: ""; /*this is a must for it to work*/
+    display: inline-block; /*this is a must for it to work*/
+    height: 100%; /*after psudoelement is treated as the child of the element that is why 100% means 100% of that element*/
+    width: 100%;
+    border-radius: 100px;
+    position: absolute; /* this always needs relative positioning so it trys to find a element that has position: relative so we set the button position to relative */
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.btn-white::after {
+    background-color: white;
+    transition: all .4s;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInButtom .5s ease-out .25s;
+    animation-fill-mode: backwards; /* it uses 0% as the initial state without this, the button will be visible at first, try removeing it and see what happens */
 }
