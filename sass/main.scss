@@ -13,6 +13,9 @@ $color-primary: #7ed56f;
 $color-primary-light: #55c57a;
 $color-primary-dark: #28b485;
 
+$color-gray-dark: #777;
+$color-white: #fff;
+
 
 *,*::after, *::before {
     margin: 0px;
@@ -29,7 +32,7 @@ body {
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.7;
-    color: #777;
+    color: $color-gray-dark;
     padding: 3.0rem;
 
     box-sizing: border-box; /*go yo *,*::after, *::before box-sizing to know why it is done this way */
@@ -71,7 +74,7 @@ body {
 }
 
 .heading-primary{
-    color: #fff;
+    color: $color-white;
     text-transform: uppercase;
 
     backface-visibility: hidden;  /* If you don't want any shaking in text */
@@ -173,8 +176,8 @@ body {
 }
 
 .btn--white {
-    background-color: #fff;
-    color: #777;
+    background-color: $color-white;
+    color: $color-gray-dark;
 }
 
 .btn::after {
@@ -191,7 +194,7 @@ body {
 }
 
 .btn--white::after {
-    background-color: white;
+    background-color: $color-white;
     
 }
 
