@@ -14,8 +14,8 @@ $color-primary-light: #55c57a;
 $color-primary-dark: #28b485;
 
 $color-gray-dark: #777;
-$color-white: red;
-
+$color-white: #fff;
+$color-black: #000;
 
 *,*::after, *::before {
     margin: 0px;
@@ -47,30 +47,31 @@ body {
     background-position: top;
     position: relative;
     clip-path: polygon(0 0, 100% 0 , 100% 75vh, 0 100%);
-}
 
-.header__logo-box{
-    position: absolute;
-    top: 4.0rem;
-    left: 4.0rem;
-}
+    &__logo-box{
+        position: absolute;
+        top: 4.0rem;
+        left: 4.0rem;
+    }
 
-.header__logo{
-    height: 3.5rem;
-}
+    &__logo{
+        height: 3.5rem;
+    }
+    
+    &__logo:hover{
+        animation: barrelRoll 1s;
+    }
+    
+    &__text-box{
+        /* thisIsHowYouCenterADivStart */
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        /* thisIsHowYouCenterADivEnd */
+        text-align: center; /* inline-block elements are treated as text, so it will center any inline-block element*/
+    }
 
-.header__logo:hover{
-    animation: barrelRoll 1s;
-}
-
-.header__text-box{
-    /* thisIsHowYouCenterADivStart */
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    /* thisIsHowYouCenterADivEnd */
-    text-align: center; /* inline-block elements are treated as text, so it will center any inline-block element*/
 }
 
 .heading-primary{
@@ -79,27 +80,28 @@ body {
 
     backface-visibility: hidden;  /* If you don't want any shaking in text */
     margin-bottom: 6.0rem;
+
+    &--main{
+        display: block;
+        font-size: 6.0rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+    
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+    }
+    
+    &--sub{
+        display: block;
+        font-size: 2.0rem;
+        font-size: 700;
+        letter-spacing: 1.75rem;
+    
+        animation: moveInRight 1s ease-out;
+    }
 }
 
-.heading-primary--main{
-    display: block;
-    font-size: 6.0rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-}
-
-.heading-primary--sub{
-    display: block;
-    font-size: 2.0rem;
-    font-size: 700;
-    letter-spacing: 1.75rem;
-
-    animation: moveInRight 1s ease-out;
-}
 
 @keyframes moveInLeft {
     0% {
@@ -154,56 +156,63 @@ body {
     }
 }
 
-.btn:link, .btn:visited {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 4.0rem;
-    display: inline-block;
-    border-radius: 10.0rem;
-    transition: all .2s;
-    position: relative; /* find the reason in btn::after */
-    font-size: 2rem;
-}
 
-.btn:hover {
-    transform: translateY(-.3rem);
-    box-shadow: 0 1.0rem 2.0rem rgba(0, 0, 0, .2);
-}
+.btn {
 
-.btn:active {
-    transform: translateY(-.1rem);
-    box-shadow: 0 .5rem 1.0rem rgba(0, 0, 0, .2);
-}
-
-.btn--white {
-    background-color: $color-white;
-    color: $color-gray-dark;
-}
-
-.btn::after {
-    content: ""; /*this is a must for it to work*/
-    display: inline-block; /*this is a must for it to work*/
-    height: 100%; /*after psudoelement is treated as the child of the element that is why 100% means 100% of that element*/
-    width: 100%;
-    border-radius: 10.0rem;
-    position: absolute; /* this always needs relative positioning so it trys to find a element that has position: relative so we set the button position to relative */
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all .4s;
-}
-
-.btn--white::after {
-    background-color: $color-white;
+    &:link, &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4.0rem;
+        display: inline-block;
+        border-radius: 10.0rem;
+        transition: all .2s;
+        position: relative; /* find the reason in btn::after */
+        font-size: 2rem;
+    }
     
+    &:hover {
+        transform: translateY(-.3rem);
+        box-shadow: 0 1.0rem 2.0rem rgba($color-black, .2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active {
+        transform: translateY(-.1rem);
+        box-shadow: 0 .5rem 1.0rem rgba($color-black, .2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+
+        &::after {
+            background-color: $color-white;
+            
+        }
+    }
+    
+    &::after {
+        content: ""; /*this is a must for it to work*/
+        display: inline-block; /*this is a must for it to work*/
+        height: 100%; /*after psudoelement is treated as the child of the element that is why 100% means 100% of that element*/
+        width: 100%;
+        border-radius: 10.0rem;
+        position: absolute; /* this always needs relative positioning so it trys to find a element that has position: relative so we set the button position to relative */
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+        
+    &--animated {
+        animation: moveInButtom .5s ease-out .25s;
+        animation-fill-mode: backwards; /* it uses 0% as the initial state without this, the button will be visible at first, try removeing it and see what happens */
+    }
+
 }
 
-.btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
 
-.btn--animated {
-    animation: moveInButtom .5s ease-out .25s;
-    animation-fill-mode: backwards; /* it uses 0% as the initial state without this, the button will be visible at first, try removeing it and see what happens */
-}
