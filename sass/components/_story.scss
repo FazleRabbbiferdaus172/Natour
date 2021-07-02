@@ -8,6 +8,7 @@
     font-size: $default-font-size;
     transform: skewX(-12deg);
     position: relative;
+    background-color: rgba($color-white,.6);
 
     &__shape {
         width: 15rem;
